@@ -1,4 +1,4 @@
-#!$(pwd)/env/bin/python3
+#!$HOME/.venvs/twitter-bot/bin/python3
 
 from datetime import datetime, timezone, timedelta
 from twarc.client2 import Twarc2
