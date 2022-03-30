@@ -24,7 +24,7 @@ def get_tweets():
 
     # search_results is a generator, max_results is max tweets per page, 100 max for full archive search with all expansions.
     pages = []
-    query = "phd position (bioinformatics OR genomics) -is:retweet"
+    query = "phd position (bioinformatics OR genomics OR transcriptomics OR DNA OR RNA) -is:retweet"
     search_results = t.search_recent(query=query, start_time=None, end_time=None,)
     for page in search_results:
         pages.append(page)
