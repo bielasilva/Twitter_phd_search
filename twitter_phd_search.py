@@ -1,4 +1,4 @@
-#!env/bin/python3
+#!/home/gabriel-silva/Twitter_phd_search/env/bin/python3
 
 from datetime import datetime, timezone, timedelta
 from twarc.client2 import Twarc2
