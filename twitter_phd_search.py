@@ -46,13 +46,16 @@ def get_tweets_info(pages):
     return tweets_info
 
 def format_email(tweets_info):
-    html_tweets = f""""""
+    html_tweets = f"""
+            <h4>{len(tweets_info)} tweets found this week</h4>"""
 
     for tweet in tweets_info:
         formater = f"""
-            <p><strong>{tweet["name"]} @{tweet["username"]}</strong></p>
+            <div style="border: 2px solid #008080">
+            <p><strong>{tweet["name"]} <a href="https://twitter.com/{tweet["username"]}">@{tweet["username"]}</a></strong></p>
                 <p style="padding-left: 40px;">{tweet["text"]}<br />
-                <a href="{tweet["site"]}">Twitter Link</a></p>"""
+                <a href="{tweet["site"]}">Twitter Link</a></p>
+            </div>"""
         html_tweets += formater
 
     html_mail = f"""\
