@@ -1,4 +1,4 @@
-#!/home/gabriel-silva/Twitter_phd_search/env/bin/python3
+#!$(pwd)/env/bin/python3
 
 from datetime import datetime, timezone, timedelta
 from twarc.client2 import Twarc2
@@ -24,7 +24,9 @@ def get_tweets():
 
     # search_results is a generator, max_results is max tweets per page, 100 max for full archive search with all expansions.
     pages = []
-    query = "phd position (bioinformatics OR genomics OR transcriptomics OR DNA OR RNA) -is:retweet"
+    query_p1 = "(position OR positions OR opportunity OR opportunities OR fellowship OR fellowships OR fellow)"
+    query_p2 = "(bioinformatics OR genomics OR transcriptomics OR DNA OR RNA)"
+    query = f"phd {query_p1} {query_p2} -is:retweet"
     search_results = t.search_recent(query=query, start_time=None, end_time=None,)
     for page in search_results:
         pages.append(page)
