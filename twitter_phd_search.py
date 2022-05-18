@@ -1,4 +1,4 @@
-#!$HOME/.venvs/twitter-bot/bin/python3
+#!/usr/bin/env python3
 
 from datetime import datetime, timezone, timedelta
 from twarc.client2 import Twarc2
@@ -16,6 +16,7 @@ def main():
     send_email(html_mail)
     
 def get_tweets():
+    print("Getting tweets")
     t = Twarc2(bearer_token="AAAAAAAAAAAAAAAAAAAAAOtUawEAAAAAeQ%2FQIKly77Vi%2B2mTpoiI0L9avOk%3DMTfdQUDdJb4Zu0a6RvwqKyKEtwKeB3CpcXg65Kt75ZGKD8qBUc")
     # Start and end times must be in UTC
     #start_time = datetime.now(timezone.utc) + timedelta(hours=-2)
@@ -34,6 +35,7 @@ def get_tweets():
     return pages
 
 def get_tweets_info(pages):
+    print("Sortting tweets")
     tweets_info = []
     for page in pages:
         for tweet in ensure_flattened(page):
@@ -48,6 +50,7 @@ def get_tweets_info(pages):
     return tweets_info
 
 def format_email(tweets_info):
+    print("Formatig email")
     html_tweets = f"""
             <h4>{len(tweets_info)} tweets found this week</h4>"""
 
@@ -56,7 +59,7 @@ def format_email(tweets_info):
             <div style="border: 2px solid #008080">
             <p><strong>{tweet["name"]} <a href="https://twitter.com/{tweet["username"]}">@{tweet["username"]}</a></strong></p>
                 <p style="padding-left: 40px;">{tweet["text"]}<br />
-                <a href="{tweet["site"]}">Twitter Link</a></p>
+                {tweet["created_at"]} <a href="{tweet["site"]}">Twitter Link</a></p>
             </div>"""
         html_tweets += formater
 
@@ -71,6 +74,7 @@ def format_email(tweets_info):
     return html_mail
 
 def send_email(html_mail):
+    print("Sending email")
     sender_email = "gabrielamorimsilva@gmail.com"
     receiver_email = "gabrielamorimsilva@gmail.com"
     password = API_info.GMAIL_PASSWORD
